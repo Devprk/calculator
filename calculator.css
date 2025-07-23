@@ -1,0 +1,92 @@
+/* --- Calculator Styles (calculator.css) --- */
+
+.calculator-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 360px; /* Max width for standard calculator */
+}
+
+/* Adjust width for scientific calculator */
+#scientific-calculator {
+    max-width: 500px;
+}
+
+.calculator-container h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.calculator .display {
+    margin-bottom: 20px;
+}
+
+.calculator .display input {
+    width: 100%;
+    height: 70px;
+    padding: 20px;
+    background-color: #e9ecef;
+    border: none;
+    border-radius: 8px;
+    text-align: right;
+    font-size: 2.5rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.calculator .buttons {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Grid for scientific calculator */
+.calculator.scientific .buttons {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.calculator .btn {
+    height: 65px;
+    border: none;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.calculator .btn:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+/* Button colors */
+.calculator .btn.operator, .calculator .btn.function {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.calculator .btn.btn-equal {
+    background-color: var(--primary-color);
+    color: #fff;
+    grid-column: span 2; /* Make equals button wider */
+}
+
+#standard-calculator .btn-equal {
+     grid-column: span 2;
+}
+
+#scientific-calculator .btn-equal {
+     grid-column: 4 / 6; /* Span from column 4 to 6 */
+}
+
+
+.calculator .btn:hover {
+    opacity: 0.9;
+}

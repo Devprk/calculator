@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphing Calculator</title>
+    <link rel="stylesheet" href="graph.css">
+      <meta name="description" content="Contact CalcPal for support, feedback, or inquiries.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+</head>
+<body>
+    <div class="background-bubbles">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="CalcPal Logo">
+                    <span>CalcPal</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                     <li class="dropdown">
+                    <a href="#" class="dropbtn" class="active">Math Tools</a>
+                    <div class="dropdown-content">
+                        <a href="Graphing.html">Graphing Calculator</a>
+                        <a href="#">Scientific Calculator</a>
+                        <a href="#">Matrix Calculator</a>
+                        <a href="#">Geometry Tool</a>
+                        
+                    </div>
+                </li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><button id="theme-toggle" class="theme-toggle-btn">Theme</button></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+<body>
+    <div class="calculator">
+        <h1>Graphing Calculator</h1>
+        
+        <div class="graph-container">
+            <canvas id="graph"></canvas>
+        </div>
+        
+        <div class="settings">
+            <div class="setting-group">
+                <label for="xMin">X Min:</label>
+                <input type="number" id="xMin" class="range-input" value="-10">
+            </div>
+            <div class="setting-group">
+                <label for="xMax">X Max:</label>
+                <input type="number" id="xMax" class="range-input" value="10">
+            </div>
+            <div class="setting-group">
+                <label for="yMin">Y Min:</label>
+                <input type="number" id="yMin" class="range-input" value="-10">
+            </div>
+            <div class="setting-group">
+                <label for="yMax">Y Max:</label>
+                <input type="number" id="yMax" class="range-input" value="10">
+            </div>
+            <div class="setting-group">
+                <label for="step">Step:</label>
+                <input type="number" id="step" class="range-input" value="0.1" step="0.01">
+            </div>
+            <div class="setting-group">
+                <label>
+                    <input type="checkbox" id="degreeMode"> Degrees
+                </label>
+            </div>
+            <button id="updateGraph">Update Graph</button>
+        </div>
+        
+        <div class="controls">
+            <div class="function-input">
+                <input type="text" id="functionInput" placeholder="Enter function (e.g., sin(x), x^2, exp(x))">
+            </div>
+            <input type="color" id="colorPicker" class="color-picker" value="#FF0000">
+            <button id="addFunction">Add Function</button>
+        </div>
+        
+        <div class="preset-functions">
+            <h3>Preset Functions:</h3>
+            <div class="preset-buttons">
+                <button data-expr="sin(x)">sin(x)</button>
+                <button data-expr="cos(x)">cos(x)</button>
+                <button data-expr="tan(x)">tan(x)</button>
+                <button data-expr="exp(x)">exp(x)</button>
+                <button data-expr="log(x)">log(x)</button>
+                <button data-expr="x^2">x²</button>
+                <button data-expr="x^3">x³</button>
+                <button data-expr="sqrt(x)">√x</button>
+                <button data-expr="1/x">1/x</button>
+                <button data-expr="abs(x)">|x|</button>
+            </div>
+        </div>
+        
+        <table class="function-list">
+            <thead>
+                <tr>
+                    <th>Function</th>
+                    <th>Color</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="functionTableBody">
+                <!-- Functions will be added here -->
+            </tbody>
+        </table>
+    </div>
+ <footer>
+        <div class="container footer-content">
+            <div class="footer-section footer-branding">
+                <div class="logo">
+                    <img src="images/logo.png" alt="CalcPal Logo">
+                    <span>CalcPal</span>
+                </div>
+                <p>&copy; 2025 CalcPal. All rights reserved.</p>
+            </div>
+            <div class="footer-section footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="images/facebook-icon.png" alt="Facebook"></a>
+                    <a href="#" aria-label="Twitter"><img src="images/twitter-icon.png" alt="Twitter"></a>
+                    <a href="#" aria-label="Instagram"><img src="images/instagram-icon" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="graph.js"></script>
+
+</body>
+</html>

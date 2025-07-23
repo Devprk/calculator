@@ -1,0 +1,789 @@
+/* Basic Reset & Body Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS Variables for Light Mode (Default) */
+:root {
+    --bg-color: #ffffff; /* Overall page background to pure white */
+    --text-color: #333;
+    --header-footer-bg: #333;
+    --header-footer-text: #fff;
+    --primary-highlight: #ffd700; /* Gold-like */
+    --section-bg: #ffffff;
+    --card-bg: #ffffff;
+    --card-shadow: rgba(0,0,0,0.1);
+
+    /* Calculator Specific - Light Mode */
+    --calculator-output-bg: #000;
+    --calculator-output-text: #33ff33; /* Green text for output */
+    --calculator-body-bg: #e6e6e6; /* Lighter grey for calculator body in light mode */
+
+    --button-bg-default: #fcfcfc; /* White/very light grey for numbers and some scientific */
+    --button-hover-default: #e6e6e6;
+    --button-shadow-default: rgba(0,0,0,0.2); /* For 3D effect */
+    --button-active-shadow-default: inset 0 2px 5px rgba(0,0,0,0.3); /* Inset shadow on press */
+
+    --button-bg-operator: #ff9500; /* Orange operators (main ones like +, -, x, ÷) */
+    --button-hover-operator: #e08500;
+    --button-shadow-operator: rgba(0,0,0,0.3);
+    --button-active-shadow-operator: inset 0 2px 5px rgba(0,0,0,0.4);
+
+    --button-bg-control: #c0c0c0; /* Other control buttons (grey) like scientific (factorial, power) */
+    --button-hover-control: #a8a8a8;
+    --button-shadow-control: rgba(0,0,0,0.25);
+    --button-active-shadow-control: inset 0 2px 5px rgba(0,0,0,0.35);
+
+    --button-bg-ac-del: #d9534f; /* Distinct red for AC/DEL */
+    --button-hover-ac-del: #c9302c;
+    --button-shadow-ac-del: rgba(0,0,0,0.3);
+    --button-active-ac-del: inset 0 2px 5px rgba(0,0,0,0.4);
+
+    --button-text-light: #333; /* For buttons with light background */
+    --button-text-dark: #fff; /* For buttons with dark/colored background */
+
+    --equals-btn-bg: #3498db; /* Blue color for equals button */
+    --equals-btn-hover: #2980b9;
+    --equals-btn-shadow: rgba(0,0,0,0.3);
+    --equals-btn-active: inset 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* Dark Mode Overrides */
+body.dark-mode {
+    --bg-color: #1a1a1a; /* Dark background for overall page */
+    --text-color: #e0e0e0;
+    --header-footer-bg: #222;
+    --header-footer-text: #f0f0f0;
+    --primary-highlight: #ffdd44; /* Brighter gold for dark mode */
+    --section-bg: #2b2b2b;
+    --card-bg: #333;
+    --card-shadow: rgba(0,0,0,0.4);
+
+    /* Calculator Specific - Dark Mode */
+    --calculator-output-bg: #000; /* Black output background */
+    --calculator-output-text: #33ff33; /* Bright green text for output */
+    --calculator-body-bg: #3a3a3a; /* Darker grey for calculator body in dark mode */
+
+    --button-bg-default: #4f4f4f;
+    --button-hover-default: #666;
+    --button-shadow-default: rgba(0,0,0,0.4);
+    --button-active-shadow-default: inset 0 2px 5px rgba(0,0,0,0.5);
+
+    --button-bg-operator: #cc7a00; /* Darker orange */
+    --button-hover-operator: #b36b00;
+    --button-shadow-operator: rgba(0,0,0,0.5);
+    --button-active-shadow-operator: inset 0 2px 5px rgba(0,0,0,0.6);
+
+    --button-bg-control: #5a5a5a;
+    --button-hover-control: #707070;
+    --button-shadow-control: rgba(0,0,0,0.45);
+    --button-active-shadow-control: inset 0 2px 5px rgba(0,0,0,0.55);
+
+    --button-bg-ac-del: #a0423f; /* Darker red for dark mode */
+    --button-hover-ac-del: #903a37;
+    --button-shadow-ac-del: rgba(0,0,0,0.4);
+    --button-active-ac-del: inset 0 2px 5px rgba(0,0,0,0.5);
+
+    --button-text-light: #e0e0e0;
+    --button-text-dark: #fff;
+
+    --equals-btn-bg: #21618C; /* Darker blue for dark mode equals */
+    --equals-btn-hover: #1a4f72;
+    --equals-btn-shadow: rgba(0,0,0,0.4);
+    --equals-btn-active: inset 0 2px 5px rgba(0,0,0,0.6);
+}
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styling */
+header {
+    background: var(--header-footer-bg);
+    color: var(--header-footer-text);
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px var(--card-shadow);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.logo a {
+    text-decoration: none;
+    color: var(--header-footer-text);
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+    border-radius: 5px;
+    object-fit: contain;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 25px;
+}
+
+nav ul li a {
+    color: var(--header-footer-text);
+    text-decoration: none;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: var(--primary-highlight);
+    border-bottom: 2px solid var(--primary-highlight);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    background-color: var(--primary-highlight);
+    color: var(--text-color); /* Ensure text color changes with theme */
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+    filter: brightness(0.9);
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none; /* Hidden by default, shown in media queries for mobile */
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+    z-index: 1001;
+}
+
+.hamburger span {
+    height: 3px;
+    width: 25px;
+    background-color: var(--header-footer-text);
+    margin-bottom: 5px;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+/* Main Content Styling */
+main {
+    flex: 1;
+    padding: 2rem 0;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: var(--section-bg);
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px var(--card-shadow);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-section h1 {
+    font-size: 2.8rem;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.page-header {
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    background-color: var(--section-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px var(--card-shadow);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+/* START: BASIC CALCULATOR SECTION CSS */
+.calculator-section {
+    background-color: var(--calculator-body-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px var(--card-shadow);
+    max-width: 400px; /* Adjusted for basic calculator */
+    margin: 0 auto 50px auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.calculator-section h2 {
+    margin-bottom: 15px;
+    color: var(--text-color);
+    font-size: 1.5rem;
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns for basic */
+    gap: 10px;
+}
+
+/* --- Display Elements --- */
+.calculator-display {
+    grid-column: 1 / -1; /* Spans all columns */
+    background-color: var(--calculator-output-bg);
+    color: var(--calculator-output-text);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 100px; /* Slightly smaller height */
+    overflow: hidden;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+    word-wrap: break-word;
+}
+
+.input-display {
+    font-size: 0.9rem; /* Smaller for the expression (input) line */
+    color: rgba(51, 255, 51, 0.7); /* Slightly faded green for expression */
+    min-height: 1.2em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: right;
+}
+
+.output-display {
+    font-size: 2.2rem; /* Slightly smaller font for basic calculator */
+    min-height: 1.2em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: right;
+}
+
+/* --- Button Styling --- */
+.button {
+    border: none;
+    padding: 15px 5px;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease, color 0.3s ease;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    color: var(--button-text-light); /* Default text color for light buttons */
+    background-color: var(--button-bg-default); /* Default background for numbers, etc. */
+    box-shadow: 0 3px 5px var(--button-shadow-default);
+}
+
+.button:hover {
+    background-color: var(--button-hover-default);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 8px var(--button-shadow-default);
+}
+
+.button:active,
+.button.pressed {
+    transform: translateY(1px);
+    box-shadow: var(--button-active-shadow-default);
+}
+
+/* Specific button styles */
+.scientific-btn { /* For factorial and power */
+    background-color: var(--button-bg-control);
+    color: var(--button-text-light);
+    box-shadow: 0 3px 5px var(--button-shadow-control);
+    font-size: 1.2rem;
+}
+
+.scientific-btn:hover {
+    background-color: var(--button-hover-control);
+    box-shadow: 0 5px 8px var(--button-shadow-control);
+}
+
+.scientific-btn:active,
+.scientific-btn.pressed {
+    box-shadow: var(--button-active-shadow-control);
+}
+
+.specific-ac-btn, .specific-del-btn {
+    background-color: var(--button-bg-ac-del);
+    color: var(--button-text-dark); /* Text color for AC/DEL buttons */
+    box-shadow: 0 3px 5px var(--button-shadow-ac-del);
+}
+
+.specific-ac-btn:hover, .specific-del-btn:hover {
+    background-color: var(--button-hover-ac-del);
+    box-shadow: 0 5px 8px var(--button-shadow-ac-del);
+}
+
+.specific-ac-btn:active, .specific-del-btn:active,
+.specific-ac-btn.pressed, .specific-del-btn.pressed {
+    box-shadow: var(--button-active-ac-del);
+}
+
+.operation-btn-main {
+    background-color: var(--button-bg-operator);
+    color: var(--button-text-dark); /* Text color for operator buttons */
+    box-shadow: 0 3px 5px var(--button-shadow-operator);
+}
+
+.operation-btn-main:hover {
+    background-color: var(--button-hover-operator);
+    box-shadow: 0 5px 8px var(--button-shadow-operator);
+}
+
+.operation-btn-main:active,
+.operation-btn-main.pressed {
+    box-shadow: var(--button-active-shadow-operator);
+}
+
+.equals-btn-main {
+    background-color: var(--equals-btn-bg); /* Use variable for equals button color */
+    color: var(--button-text-dark); /* Text color for equals button */
+    box-shadow: 0 3px 5px var(--equals-btn-shadow);
+}
+
+.equals-btn-main:hover {
+    background-color: var(--equals-btn-hover);
+    box-shadow: 0 5px 8px var(--equals-btn-shadow);
+}
+
+.equals-btn-main:active,
+.equals-btn-main.pressed {
+    box-shadow: var(--equals-btn-active);
+}
+
+/* Responsive adjustments for calculator */
+@media (max-width: 768px) {
+    .calculator-section {
+        max-width: 95%;
+        padding: 15px;
+    }
+    .calculator-grid {
+        grid-template-columns: repeat(5, 1fr); /* Still 5 columns on tablets */
+        gap: 8px;
+    }
+    .calculator-display {
+        height: 90px;
+        padding: 8px 12px;
+    }
+    .input-display {
+        font-size: 0.8rem;
+    }
+    .output-display {
+        font-size: 1.8rem;
+    }
+    .button {
+        padding: 12px 5px;
+        font-size: 1.3rem;
+        height: 60px;
+    }
+    .scientific-btn {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 600px) { /* Adjust breakpoint for hamburger to appear */
+    .header-content {
+        flex-wrap: nowrap; /* Prevent wrapping too early */
+    }
+    nav {
+        display: none; /* Hide navigation by default on small screens */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%; /* Position below header */
+        left: 0;
+        background-color: var(--header-footer-bg);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        z-index: 1000;
+        padding: 15px 0;
+        text-align: center;
+    }
+
+    nav.show {
+        display: flex; /* Show when hamburger is clicked */
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav ul li {
+        margin: 10px 0; /* Adjust spacing for vertical menu */
+    }
+
+    nav ul li a {
+        display: block; /* Make links take full width */
+        padding: 10px 20px;
+    }
+
+    .hamburger {
+        display: flex; /* Show hamburger icon */
+    }
+
+    .theme-toggle-btn {
+        margin-top: 10px; /* Add some spacing if it becomes part of mobile nav */
+    }
+}
+
+
+@media (max-width: 480px) {
+    .calculator-section {
+        padding: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+        max-width: 98%;
+    }
+    .calculator-grid {
+        grid-template-columns: repeat(5, 1fr); /* Still 5 columns on very small screens */
+        gap: 6px;
+    }
+    .button {
+        padding: 10px 2px;
+        font-size: 1.1rem;
+        height: 55px;
+    }
+    .scientific-btn {
+        font-size: 0.9rem;
+    }
+
+    /* Further adjustments for extremely small screens if needed */
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    .hero-section p {
+        font-size: 1rem;
+    }
+}
+/* END: BASIC CALCULATOR SECTION CSS */
+
+
+/* General Content Pages Styling (About, Contact, Terms) */
+.about-content,
+.contact-form-section,
+.terms-content {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px var(--card-shadow);
+    margin-bottom: 30px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-content h2,
+.contact-form-section h3,
+.terms-content h2 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.about-content p,
+.terms-content p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.about-content ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.about-content ul li {
+    margin-bottom: 8px;
+}
+
+/* Contact Form Specifics */
+.contact-form-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 280px;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+}
+
+.contact-form {
+    flex: 2;
+    min-width: 300px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--text-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: var(--primary-highlight);
+    color: var(--text-color);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    filter: brightness(0.9);
+}
+
+/* Footer Styling */
+footer {
+    background: var(--header-footer-bg);
+    color: var(--header-footer-text);
+    padding: 2rem 0;
+    margin-top: auto;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-branding .logo {
+    margin-bottom: 10px;
+}
+
+.footer-branding p {
+    font-size: 0.9rem;
+    color: var(--header-footer-text);
+}
+
+.footer-links h3,
+.footer-social h3 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: var(--primary-highlight);
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links ul li {
+    margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+    color: var(--header-footer-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: var(--primary-highlight);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a img {
+    height: 30px;
+    width: 30px;
+    transition: transform 0.2s ease;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.1);
+}
+
+/* --- BUBBLE BACKGROUND STYLING --- */
+.background-bubbles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.background-bubbles div {
+    position: absolute;
+    display: block;
+    list-style: none;
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+    border-radius: 50%;
+}
+
+.background-bubbles div:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; background: rgba(240, 128, 128, 0.4); } /* f08080 */
+.background-bubbles div:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; background: rgba(244, 151, 142, 0.4); } /* f4978e */
+.background-bubbles div:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; background: rgba(248, 173, 157, 0.4); } /* f8ad9d */
+.background-bubbles div:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; background: rgba(251, 196, 171, 0.4); } /* fbc4ab */
+.background-bubbles div:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; background: rgba(255, 218, 185, 0.4); } /* ffdab9 */
+.background-bubbles div:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; background: rgba(240, 128, 128, 0.4); } /* Cycle back to first color */
+.background-bubbles div:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; background: rgba(244, 151, 142, 0.4); }
+.background-bubbles div:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; background: rgba(248, 173, 157, 0.4); }
+.background-bubbles div:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; background: rgba(251, 196, 171, 0.4); }
+.background-bubbles div:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; background: rgba(255, 218, 185, 0.4); }
+
+
+/* Keyframe animation for bubbles */
+@keyframes animate {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 50%; }
+    100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    cursor: pointer;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+    color: #fff; /* Adjust based on theme */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 220px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
